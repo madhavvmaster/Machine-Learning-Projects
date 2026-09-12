@@ -1,4 +1,4 @@
-# Machine learning model to predict if a patient has diabetes or not
+# Machine learning model to predict the delivery time using km
 
 # Import libraries
 import pandas as pd
@@ -12,7 +12,7 @@ df = pd.read_csv("delivery_time.csv")
 X = df[['distance']]
 y = df['time_taken']
 
-# Train logistic regression model
+# Train linear regression model
 model = LinearRegression()
 model.fit(X, y)
 
