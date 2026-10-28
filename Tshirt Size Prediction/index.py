@@ -74,16 +74,7 @@ with ui.column().classes("w-full gap-4 p-4"):
                 placeholder="Enter height in cm",
             ).props("outlined dense type=number")
             height_input.classes("w-full")
-            with ui.card().classes("w-full items-center p-3 mt-4").style(
-                f"background-color: {THEME_COLORS['primary_light']}; border: none;"
-            ):
-                ui.label("R2 Score").classes("text-sm font-bold").style(
-                    f"color: {THEME_COLORS['muted_text']}"
-                )
-                ui.label(f"{test_r2:.2%}").classes("text-xl font-bold").style(
-                    f"color: {THEME_COLORS['primary_dark']}"
-                )
-
+            
         with ui.card().classes("w-full rounded-xl p-6 col-span-2").style(card_style):
             ui.label("Weight").classes("text-lg font-bold mb-4").style(f"color: {THEME_COLORS['text']}")
             weight_input = ui.input(

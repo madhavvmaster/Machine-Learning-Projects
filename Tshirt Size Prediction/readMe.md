@@ -1,16 +1,16 @@
 # T-Shirt Size Prediction
 
-A NiceGUI web application that predicts a person's T-shirt size (`S`, `M`, or
-`L`) from height and weight measurements.
+A NiceGUI web application that predicts a person's T-shirt size (`Small`, `Medium`, or
+`Large`) from height and weight measurements.
 
 ## Features
 
 - Loads the training data from `tshirt_sizes.csv`.
 - Encodes T-shirt size labels.
 - Trains a logistic regression classification model.
-- Displays the test R² score and classification accuracy.
+- Displays the classification accuracy.
 - Provides a five-block responsive interface:
-  - Height input in two grid blocks, with the R² score below it.
+  - Height input in two grid blocks.
   - Weight input in two grid blocks.
   - Accuracy in one grid block.
   - Predicted size across the full width below the inputs.
