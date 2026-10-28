@@ -1,27 +1,35 @@
 # T-Shirt Size Prediction
 
-A machine learning program that predicts a person's T-shirt size (`S`, `M`, or
-`L`) from their height and weight.
+A NiceGUI web application that predicts a person's T-shirt size (`S`, `M`, or
+`L`) from height and weight measurements.
 
 ## Features
 
-- Loads training data from `tshirt_sizes.csv`.
-- Encodes the size labels for model training.
+- Loads the training data from `tshirt_sizes.csv`.
+- Encodes T-shirt size labels.
 - Trains a logistic regression classification model.
-- Reports the model score on the test data.
-- Predicts a T-shirt size from new measurements.
-- Appends the new prediction to the CSV file.
+- Displays the test R² score and classification accuracy.
+- Provides a five-block responsive interface:
+  - Height input in two grid blocks, with the R² score below it.
+  - Weight input in two grid blocks.
+  - Accuracy in one grid block.
+  - Predicted size across the full width below the inputs.
+- Displays predictions as Small, Medium, or Large.
+- Validates that height and weight are positive numbers.
+- Appends each valid prediction to `tshirt_sizes.csv`.
+- Uses a light, white-background theme with configurable `THEME_COLORS`.
 
 ## Requirements
 
 - Python 3.8 or later
 - pandas
 - scikit-learn
+- nicegui
 
-Install the required packages with:
+Install the dependencies with:
 
 ```bash
-pip install pandas scikit-learn
+pip install pandas scikit-learn nicegui
 ```
 
 ## Project Structure
@@ -35,7 +43,7 @@ Tshirt Size Prediction/
 
 ## Dataset
 
-The `tshirt_sizes.csv` file contains these columns:
+`tshirt_sizes.csv` contains:
 
 - `height_cm`: Height in centimeters
 - `weight_kg`: Weight in kilograms
@@ -43,26 +51,37 @@ The `tshirt_sizes.csv` file contains these columns:
 
 ## How to Run
 
-Open a terminal in the project folder and run:
+From the project directory, run:
 
 ```bash
 python index.py
 ```
 
-Enter the requested measurements:
+Then open the application at:
 
 ```text
-Enter the height (in cm): 170
-Enter the weight (in kg): 65
+http://localhost:8080
 ```
 
-The program prints the predicted T-shirt size and appends the new record to
-`tshirt_sizes.csv`.
+Enter a positive height in centimeters and weight in kilograms, then click
+**Predict T-shirt Size**. The predicted size appears below the input grid.
 
-## Model
+## Model Metrics
 
-The program uses `LogisticRegression` from scikit-learn. The input features are
-height and weight, and the target is the T-shirt size.
+The application uses `LogisticRegression(max_iter=250)` with height and weight
+as input features and the encoded size as the target.
 
-The printed score is the model's classification accuracy on the test subset.
-It is not an R2 regression score.
+It calculates and prints both:
+
+- R² score: `model.score(X_test, y_test)`
+- Accuracy: `accuracy_score(y_test, predictions)`
+
+The displayed test accuracy is the percentage of correctly classified test
+samples. The R² value is printed in the console because logistic regression is
+a classifier, so this value is not an R² regression metric in the usual sense.
+
+## UI Theme
+
+The interface uses the `THEME_COLORS` dictionary in `index.py`. Colors can be
+adjusted centrally, including the primary blue, light blue background, borders,
+text, card surface, and page background.
